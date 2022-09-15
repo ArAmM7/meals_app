@@ -1,8 +1,11 @@
 # meals_app
 
+[![pages-build-deployment](https://github.com/ArAmM7/meals_app/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/ArAmM7/meals_app/actions/workflows/pages/pages-build-deployment)
+
 An app that shows recipes based on categories and filters that you define oon the settings screen.
 My third app with Flutter, multiple screens with navigation, using Material widgets of Flutter.
 
+ [Click here to test it on the web](https://aramm7.github.io/meals_app/)
 
 ## Getting Started
 
