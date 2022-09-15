@@ -10,13 +10,15 @@ class MealItem extends StatelessWidget {
   final Affordability affordability;
   final int duration;
 
-  const MealItem(
-      {super.key,
-      required this.title,
-      required this.imageUrl,
-      required this.complexity,
-      required this.affordability,
-      required this.duration, required this.id});
+  const MealItem({
+    super.key,
+    required this.title,
+    required this.imageUrl,
+    required this.complexity,
+    required this.affordability,
+    required this.duration,
+    required this.id,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -63,22 +65,22 @@ class MealItem extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.schedule),
-                      SizedBox(width: 6),
+                      const Icon(Icons.schedule),
+                      const SizedBox(width: 6),
                       Text('$duration min')
                     ],
                   ),
                   Row(
                     children: [
-                      Icon(Icons.work),
-                      SizedBox(width: 6),
+                      const Icon(Icons.work),
+                      const SizedBox(width: 6),
                       Text(complexity.toString().split('.')[1])
                     ],
                   ),
                   Row(
                     children: [
-                      Icon(Icons.attach_money),
-                      SizedBox(width: 6),
+                      const Icon(Icons.attach_money),
+                      const SizedBox(width: 6),
                       Text(affordability.toString().split('.')[1])
                     ],
                   ),
@@ -92,6 +94,9 @@ class MealItem extends StatelessWidget {
   }
 
   void selectMeal(BuildContext context) {
-    Navigator.of(context).pushNamed(MealDetailScreen.routeName, arguments: id);
+    Navigator.of(context).pushNamed(
+      MealDetailScreen.routeName,
+      arguments: id,
+    );
   }
 }
