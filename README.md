@@ -7,4 +7,4 @@ My third app with Flutter, multiple screens with basic navigation, routing and p
 using Material widgets of Flutter. Non elegant state management methods are used which result in a
 small bug and difficulty in future refactoring.
 
- [Click here to test it on the web](https://aramm7.github.io/meals_app/)
+[Click here to test it on the web](https://aramm7.github.io/meals_app/)
