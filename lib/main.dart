@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:device_preview/device_preview.dart';
 
 import 'package:meals_app/dummy_data.dart';
 import 'package:meals_app/screens/categories_screen.dart';
@@ -10,7 +13,12 @@ import 'package:meals_app/screens/tabs_screen.dart';
 import 'package:meals_app/models/meal.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    DevicePreview(
+      enabled: kIsWeb || Platform.isWindows || Platform.isMacOS || Platform.isLinux,
+      builder: (context) => const MyApp(), // Wrap your app
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -39,21 +47,20 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Meals app',
+      useInheritedMediaQuery: true,
+      locale: DevicePreview.locale(context),
       theme: ThemeData(
         brightness: Brightness.light,
         fontFamily: 'Raleway',
         textTheme: ThemeData.light().textTheme.copyWith(
-              titleLarge: const TextStyle(
-                  fontFamily: 'RobotoCondensed', fontWeight: FontWeight.bold),
+              titleLarge:
+                  const TextStyle(fontFamily: 'RobotoCondensed', fontWeight: FontWeight.bold),
               bodyLarge: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(20, 51, 51, 1)),
+                  fontWeight: FontWeight.bold, color: Color.fromRGBO(20, 51, 51, 1)),
               bodyMedium: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(20, 51, 51, 1)),
+                  fontWeight: FontWeight.bold, color: Color.fromRGBO(20, 51, 51, 1)),
               bodySmall: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(20, 51, 51, 1)),
+                  fontWeight: FontWeight.bold, color: Color.fromRGBO(20, 51, 51, 1)),
             ),
         colorScheme: const ColorScheme(
             primary: Colors.pink,
@@ -74,8 +81,7 @@ class _MyAppState extends State<MyApp> {
         '/': (ctx) => TabsScreen(_favoriteMeals),
         CategoryMealsScreen.routeName: (ctx) =>
             CategoryMealsScreen(availableMeals: _availableMeals),
-        MealDetailScreen.routeName: (ctx) =>
-            MealDetailScreen(_toggleFavorite, _isMealFavorite),
+        MealDetailScreen.routeName: (ctx) => MealDetailScreen(_toggleFavorite, _isMealFavorite),
         FiltersScreen.routeName: (ctx) => FiltersScreen(_filters, _setFilters),
       },
       onGenerateRoute: (settings) {
@@ -120,8 +126,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _toggleFavorite(String mealId) {
-    final existingIndex =
-        _favoriteMeals.indexWhere((element) => element.id == mealId);
+    final existingIndex = _favoriteMeals.indexWhere((element) => element.id == mealId);
     if (existingIndex >= 0) {
       setState(
         () {
@@ -131,8 +136,7 @@ class _MyAppState extends State<MyApp> {
     } else {
       setState(
         () {
-          _favoriteMeals
-              .add(dummyMeals.firstWhere((element) => mealId == element.id));
+          _favoriteMeals.add(dummyMeals.firstWhere((element) => mealId == element.id));
         },
       );
     }
