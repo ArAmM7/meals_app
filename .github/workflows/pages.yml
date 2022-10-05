@@ -1,5 +1,5 @@
 
-name: Gh-Pages
+name: Github-Pages
 
 on:
   push:
